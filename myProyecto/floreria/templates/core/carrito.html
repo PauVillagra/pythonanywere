@@ -1,0 +1,69 @@
+{% extends "core/base_usuario.html" %}
+
+{% block titulo %}
+Carrito de Compras - Cine Romeo
+{% endblock titulo %}
+
+{% load static %}
+
+{% block contenido %}
+
+<!-- sector del menu -->
+<h2>Carrito de Compras</h2>
+<center>
+    <div class="container">
+        <table border="1">
+           
+            {% for l in x %}
+            <div class="card" style="width: 18rem;">
+                <!--<img src="{{ l.img }}" class="card-img-top" alt="...">
+
+            <img alt="Responsive image" src="{{ l.img.url }}" width="367" height="270" class="rounded-lg"
+             data-toggle="modal" data-target="#{{ l.nombre }}" data-id="{{ l.nombre }}" />
+            -->
+                <div class="card-body">
+                    <h5 class="card-title">{{l.nombre}}</h5>
+                    <p class="card-text">Valor : $ {{l.valor}} </p>
+
+                    {% if  l.cantidad == '0' %}
+                    <div class="alert alert-danger" role="alert"> Ya no hay más Productos </div>
+                    <p class="card-text">Cantidad : $ 0 </p>
+                    <p class="card-text">TOTAL : $ 0 </p>
+                    <input type="button" value="+" onclick="javascript:location.href='{% url 'CARRO_MAS' l.nombre %}'">
+                    {% else %}
+                    <p class="card-text">Cantidad : {{l.cantidad}} </p>
+                    <p class="card-text">TOTAL : $ {{l.total}} </p>
+                    <input type="button" value="+" onclick="javascript:location.href='{% url 'CARRO_MAS' l.nombre %}'">
+                    <input type="button" value="-"
+                        onclick="javascript:location.href='{% url 'CARRO_MENOS' l.nombre %}'">
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Productos</h5>
+                    <h5 class="card-title"> $ {{total}}</h5>
+                    <a href="{% url 'GRABAR_CARRO' %}" role="button" class="btn btn-primary">Finalizar Compra</a>
+                </div>
+            </div>
+            <br>
+            <a href="{% url 'VACIAR' %}" role="button" class="btn btn-primary" >Vaciar Carrito</a>
+                
+        
+            <div class="form-group">
+                <div class="form-check">
+                    <!--CHECKBOX QUE DECLARA ESTAR DE ACUERDO CON TERMINOS-->
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck"> Estoy de acuerdo con los terminos y condiciones </label>
+                    <div class="invalid-feedback"> Debes estar de acuerdo con los terminos y condiciones. </div>
+                </div>
+            </div>
+        </table>
+    </div>
+    {{mensaje}}
+</center>
+{% endblock contenido %}

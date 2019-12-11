@@ -1,0 +1,109 @@
+
+{% extends "core/base_usuario.html" %}
+{% load static %}
+
+{% block contenido %}
+<div style="background-color: rgb(0, 238, 255);">
+        <div class="container">
+            <div class="jumbotron" style="background-color: rgba(255, 41, 209, 0.959);">
+                <h3><em>Galeria de flores</em></h3>
+
+            </div>
+        </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="mdb-lightbox-ui"></div>
+
+                <div class="mdb-lightbox no-margin">
+                    {% for f in listaFlores %}
+                    <!-- Button trigger modal -->
+                    <a class="black-text" href="#">
+                        <figure class="figure">
+                            <img alt="Responsive image" src="{{ f.imagen.url }}" width="367" height="270"
+                                class="rounded-lg" data-toggle="modal" data-target="#{{ f.name }}"
+                                data-id="{{ f.name }}" />
+                            <h3 class="text-center my-3">{{f.name}}</h3>
+                    </a>
+                    {% if f.estado == "D" %}
+
+                    <div class="alert alert-success" role="alert">
+                        Producto Disponible
+                    </div>
+                    <div>
+                <a href="{% url 'AGREGAR_CARRO' f.name %}" role="button"
+                   class="btn btn-primary">Agregar al Carro</a>
+                </div>
+                    {% endif %}
+
+                    {% if f.estado == "N" %}
+
+                    <div class="alert alert-danger" role="alert">
+                        Producto no Disponible
+                    </div>
+
+                    {% endif %}
+                    </figure>
+
+                    <!-- Modal -->
+
+                    <div class="modal fade" id="{{ f.name }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+
+                                </div>
+
+                                <div class="modal-body">
+                                    <img alt="Responsive image" src="{{ f.imagen.url }}" width="465" height="250"
+                                        class="rounded-lg" />
+                                    <hr>
+                                    <p>Nombre: {{f.name}} </p>
+                                    <p>Valor: ${{f.valor}}</p>
+                                    <p>Descripcion: {{f.descripcion}}</p>
+                                    {% if f.estado == "D" %}
+
+                                    <p>Estado: Disponible</p>
+
+                                    {% endif %}
+
+                                    {% if f.estado == "N" %}
+
+                                    <p>Estado: No Disponible</p>
+
+                                    {% endif %}
+                                    <p>Stock: {{f.stock}}</p>
+
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock contenido %}

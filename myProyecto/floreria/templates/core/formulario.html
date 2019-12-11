@@ -1,0 +1,100 @@
+{% extends "core/base_administrador.html" %}
+
+{% block titulo %}
+Galeria - Floreria
+{% endblock titulo %}
+
+{% load static %}
+{% block contenido %}
+    <div class="container">
+        <div class="jumbotron" style="background-color: rgb(248, 227, 227);">
+            <h3><em>Floreria Petalos</em></h3>
+            <p><em>Regala cariño, con Florería Pétalos</em></p>
+        </div>
+    </div>
+
+
+<div class="container" style="margin-left: 300px;">
+    <form class="needs-validation" id="formulario" action="" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nombre de Flor</label>
+                <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre" minlength="3" maxlength="100" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese un nombre.
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom02">Valor</label>
+                <input type="number" class="form-control" id="txtValor" name="txtValor" placeholder="Valor" min="100" max="1000000" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese un valor.
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom03">Estado</label>
+                <input type="text" class="form-control" id="txtEstado" name="txtEstado" placeholder="D-N" minlength="1" maxlength="1" pattern="N|D|n|d" required>
+                <div class="invalid-feedback">
+                    Por favor indique disponible(D)-noDisponible(N).
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom04">Stock</label>
+                <input type="number" class="form-control" id="txtStock" name="txtStock" placeholder="Stock" min="0" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese el stock del producto.
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom04">Fotografia</label>
+                <input type="file" class="form-control" id="txtImagen" name="txtImagen" placeholder="Imagen" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese una imagen del producto.
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom02">Descripcion</label>
+                <input type="text" class="form-control" id="txtDesc" name="txtDesc" placeholder="Descripcion" minlength="4" maxlength="100" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese una descripcion.
+                </div>
+            </div>
+        </div>
+
+
+
+        <button class="btn btn-primary" type="submit">Crear</button>
+        <hr>
+    </form>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</div>
+
+
+{% endblock contenido %}
