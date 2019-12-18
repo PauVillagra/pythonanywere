@@ -12,3 +12,14 @@ class Flores(models.Model):
     def __str__(self):
         return self.name
 
+class Compra(models.Model):
+    usuario=models.CharField(max_length=100)
+    producto=models.CharField(max_length=100)
+    valor=models.IntegerField()
+    cantidad=models.IntegerField()
+    total=models.IntegerField()
+    fecha=models.DateField()
+
+    def __str__(self):
+        return str(self.usuario)+' '+str(self.producto)
+

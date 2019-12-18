@@ -40,7 +40,7 @@
 
             </a>
         </nav>
-        
+
 
     </nav>
 
@@ -51,58 +51,66 @@
 
 
         <div class="container">
+            <center>
+
+
                 <h1>Login</h1>
-                
-                <form name="formulario" class="needs-validation" id="formulario" action="{% url 'login_inicio' %}" method="POST"
-                    enctype="multipart/form-data" novalidate>
+
+                <form name="formulario" class="needs-validation" id="formulario" action="{% url 'login_inicio' %}"
+                    method="POST" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
-                    <div class="form-row">
+                    <a href="{% url 'social:begin' 'facebook' %}" role="button" class="btn btn-primary btn-lg" style="width: 172px; margin-right: 16px;"> Facebook </a>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}" role="button" class="btn btn-danger btn-lg" style="width: 172px;">Google+</a>
+                    <div class="form-row" style="margin-left: 450px;">
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom01">Nombre Usuario</label>
-                            <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" placeholder="Usuario"
-                                required>
+                            <input type="text" class="form-control" id="txtUsuario" name="txtUsuario"
+                                placeholder="Usuario" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un nombre de usuario valido.
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" style="margin-left: 450px;">
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom02">Contraseña</label>
-                            <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="Contraseña"
-                                required>
+                            <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                                placeholder="Contraseña" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese una contraseña valida.
                             </div>
                         </div>
                     </div>
-            
+
                     <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
-                    <p><a href="{% url 'registro' %}" class="text-muted">¿No posee una cuenta? Haga click aqui para registrarse</a></p>
+                    <p><a href="{% url 'registro' %}" class="text-muted">¿No posee una cuenta? Haga click aqui para
+                            registrarse</a></p>
                     <hr>
                 </form>
-            </div>
-            <!--METODO DE VALIDACION ATRAVEZ DE JAVASCRIPT-->
-            <script>
-                (function () {
-                    'use strict';
-                    window.addEventListener('load', function () {
-                        var forms = document.getElementsByClassName('needs-validation');
-                         //LOOP PARA NO PODER ENVIAR LA INFORMACION HASTA QUE ESTA ESTÉ CORRECTA
-                        var validation = Array.prototype.filter.call(forms, function (form) {
-                            form.addEventListener('submit', function (event) {
-                                if (form.checkValidity() === false) {
-                                    event.preventDefault();
-                                    event.stopPropagation();
-                                }
-                                form.classList.add('was-validated');
-                            }, false);
-                        });
-                    }, false);
-                })();
-            </script>
                 
-            </div>
+            </center>
+        </div>
+        <!--METODO DE VALIDACION ATRAVEZ DE JAVASCRIPT-->
+        <script>
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    var forms = document.getElementsByClassName('needs-validation');
+                    //LOOP PARA NO PODER ENVIAR LA INFORMACION HASTA QUE ESTA ESTÉ CORRECTA
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
+
+        </div>
         {% endblock contenido %}
     </section>
 

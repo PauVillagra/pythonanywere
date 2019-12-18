@@ -32,12 +32,20 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'floreria.apps.FloreriaConfig',
+    'social_django',
+    'pwa', 
 ]
 
 MIDDLEWARE = [
@@ -48,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'myProyecto.urls'
@@ -63,6 +72,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
+                'django.template.context_processors.request',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -122,3 +136,24 @@ STATIC_URL = '/static/'
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#DEFINICION DE LOS MODELOS INTERNOS
+AUTHENTICATION_BACKENDS=(
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.open_id.OpenIdAuth',
+)
+
+#DIRECCION URL AL MOMENTO DE LOGEARCE
+SOCIAL_AUTH_LOGIN_REDIRECT_URL='/home_usuario/'
+
+#CLAVES DE LA APLICACION FACEBOOK
+SOCIAL_AUTH_FACEBOOK_KEY='3561892413820967'
+SOCIAL_AUTH_FACEBOOK_SECRET='0281072864246a53d1090d8b2b516b97'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1019684226862-phohack32929pdflrj04gdn77g8c280e.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='TpEfRsFDbbZ_ITHW4Wj4745J'

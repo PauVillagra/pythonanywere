@@ -1,4 +1,4 @@
-#!d:\floreriapetalos\myentorno\scripts\python.exe
+#!d:\floreria con mejoras 1\con google\pythonanywere-master\myentorno\scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":

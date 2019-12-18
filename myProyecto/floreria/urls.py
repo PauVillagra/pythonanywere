@@ -9,7 +9,7 @@ urlpatterns = [
     path('galeria_usuario/',galeria_usuario,name='galeria_usuario'),
     path('formulario/',formulario,name='formulario'),
     path('eliminar_flor/<id>/',eliminar_flor,name='eliminar'),
-    path('',login,name='login'),
+    path('login/',login,name='login'),
     path('login_inicio/',login_inicio,name='login_inicio'),
     path('cerrar_sesion/',cerrar_sesion,name='cerrar_sesion'),
     path('carrito/',carrito,name='CARRITO'),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('agregar_carro/<id>/',agregar_carro,name='AGREGAR_CARRO'), 
     path('vaciar_carrito/',vaciar_carrito,name='VACIAR'),
     path('registro/',registro,name='registro'),
+    path('',home,name='home'),
 ]
